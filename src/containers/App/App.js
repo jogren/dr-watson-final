@@ -17,7 +17,7 @@ export class App extends Component {
   }
 
   clearMessages = () => {
-    this.props.clearAllMessages([])
+    this.props.clearAllMessages()
     // this.setState({ messages: [] });
   }
 
