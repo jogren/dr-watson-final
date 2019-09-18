@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { App, mapStateToProps, mapDispatchToProps } from './App';
-import { removeUser, hasErrored } from '../../actions';
+import { removeUser, hasErrored, addNewMessage, clearAllMessages } from '../../actions';
 import { endConversation } from '../../apiCalls';
 
 jest.mock('../../apiCalls');
@@ -109,6 +109,30 @@ describe('mapDispatchToProps', () => {
 
     const mappedProps = mapDispatchToProps(mockDispatch);
     mappedProps.hasErrored('fetch failed');
+
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+  });
+
+  it('calls dispatch with a addNewMessage action when addNewMessage is called', () => {
+    const mockMessages = [{
+      message: 'Hi there, my name is Dr. Watson. I understand that you have been feeling happy. That is super exciting to hear!',
+      isUser: false,
+    }]
+    const mockDispatch = jest.fn();
+    const actionToDispatch = addNewMessage(mockMessages);
+
+    const mappedProps = mapDispatchToProps(mockDispatch);
+    mappedProps.addNewMessage(mockMessages);
+
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+  });
+
+  it('calls dispatch with a clearAllMessages action when clearAllMessages is called', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = clearAllMessages();
+
+    const mappedProps = mapDispatchToProps(mockDispatch);
+    mappedProps.clearAllMessages();
 
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
   });
