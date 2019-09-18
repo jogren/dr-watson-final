@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { hasErrored } from '../../actions';
 import { postMessage } from '../../apiCalls';
 import Message from '../../components/Message/Message'
-
 import "./ChatBox.css"
 
 export class ChatBox extends Component {
