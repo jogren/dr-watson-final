@@ -38,6 +38,7 @@ export class App extends Component {
   render() {
     const { user } = this.props;
     const { messages } = this.state;
+    console.log(messages)
     return (
       <div className="App">
         <Header signOut={this.signOut} />
